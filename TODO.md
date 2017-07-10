@@ -2,8 +2,8 @@
 
 ### Important
 
-- [ ] Implement single expressions
-- [ ] Implement complex expressions
+- [x] Implement single expressions
+- [x] Implement complex expressions
 
 ### General:
 
