@@ -1,6 +1,6 @@
 {
   "name": "stringtoms",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Convert string to milliseconds",
   "keywords": "convert string strings millisecond milliseconds ms",
   "main": "lib/index.js",
