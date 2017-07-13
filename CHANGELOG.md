@@ -2,6 +2,10 @@
 All notable changes to this project will be documented in this file.
 
 
+## [1.0.3] - 2017-07-13
+### Changes
+- update dockblocks
+
 ## [1.0.2] - 2017-07-10
 ### Changes
 - change todo
