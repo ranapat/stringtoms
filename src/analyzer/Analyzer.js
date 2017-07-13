@@ -1,17 +1,75 @@
 import Pair from './Pair';
 import Types from '../types/Types';
 
+/**
+ * Analyzer
+ *
+ * Analyzes parsed array and generates pairs array
+ *
+ * @static
+ * @internal
+ */
 class Analyzer {
+  /**
+   * digit
+   *
+   * @param {RegExp} digit regular expression for digit
+   * @static
+   */
   static digit = /[0-9]+/;
+
+  /**
+   * letter
+   *
+   * @param {RegExp} leter regular expression for leter
+   * @static
+   */
   static letter = /[a-zA-Z]+/;
+
+  /**
+   * Invalid mode
+   *
+   * @param {int} MODE_INVALID invalid mode
+   * @static
+   */
   static MODE_INVALID = 0;
+
+  /**
+   * Invalid value
+   *
+   * @param {int} MODE_VALUE value mode
+   * @static
+   */
   static MODE_VALUE = 1;
+
+  /**
+   * Invalid unit
+   *
+   * @param {int} MODE_UNIT unit mode
+   * @static
+   */
   static MODE_UNIT = 2;
 
+  /**
+   * Analyze parsed array
+   *
+   * @param {Array<string>} array parsed array
+   * @return {Array<Pair>} array analyzed array
+   * @static
+   */
   static analyze(array) {
     return Analyzer.complete(array);
   }
 
+  /**
+   * Complete parsed array
+   *
+   * Tries to complete left and right missing units or values
+   *
+   * @param {Array<string>} array parsed array
+   * @return {Array<Pair>} array analyzed array
+   * @static
+   */
   static complete(array) {
     const modified = Analyzer.normalize(array);
 
@@ -60,6 +118,15 @@ class Analyzer {
     return modified;
   }
 
+  /**
+   * Normalizes parsed array
+   *
+   * Removes missing or invalid value unit couples
+   *
+   * @param {Array<string>} array parsed array
+   * @return {Array<Pair>} array analyzed array
+   * @static
+   */
   static normalize(array) {
     const modified =  Analyzer.group(array);
 
@@ -79,6 +146,15 @@ class Analyzer {
     return modified;
   }
 
+  /**
+   * Groups parsed array
+   *
+   * Groups value units into pairs
+   *
+   * @param {Array<string>} array parsed array
+   * @return {Array<Pair>} array analyzed array
+   * @static
+   */
   static group(array) {
     const length = array.length;
 

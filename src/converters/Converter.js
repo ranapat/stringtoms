@@ -1,7 +1,22 @@
 import Types from '../types/Types';
 import Pair from '../analyzer/Pair';
 
+/**
+ * Converter
+ *
+ * Converts analyzed array to int
+ *
+ * @static
+ * @internal
+ */
 class Converter {
+  /**
+   * Converts analyzed array to milliseconds
+   *
+   * @param {Array<Pair>} array analyzed array
+   * @return {int} millisedonds milliseconds
+   * @static
+   */
   static toMilliseconds(array) {
     let sum = 0;
     let pair;

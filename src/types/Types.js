@@ -1,9 +1,50 @@
+/**
+ * Types
+ *
+ * Supported units.
+ *
+ * @static
+ * @internal
+ */
 class Types {
+  /**
+   * Hour
+   *
+   * @param {string} HOUR predefined hour
+   * @static
+   */
   static HOUR = 'h';
+
+  /**
+   * Minute
+   *
+   * @param {string} MINUTE predefined minute
+   * @static
+   */
   static MINUTE = 'm';
+
+  /**
+   * SECOND
+   *
+   * @param {string} SECOND predefined second
+   * @static
+   */
   static SECOND = 's';
+
+  /**
+   * MILLISECOND
+   *
+   * @param {string} MILLISECOND predefined millisecond
+   * @static
+   */
   static MILLISECOND = 'ms';
 
+  /**
+   * Aliases
+   *
+   * @param {Object<Array<string>>} aliases unit aliases
+   * @static
+   */
   static aliases = {
     'h': ['h', 'ho', 'hour', 'hours'],
     'm': ['m', 'mi', 'min', 'minute', 'minutes'],
@@ -11,6 +52,13 @@ class Types {
     'ms': ['ms', 'mil', 'milli', 'millisecond', 'milliseconds']
   };
 
+  /**
+   * Validate unit
+   *
+   * @param {string} symbol symbol to validate
+   * @return {string} symbol validated symbol
+   * @static
+   */
   static validate(symbol) {
     for (let key of Object.keys(Types.aliases)) {
       const array = Types.aliases[key];
@@ -26,6 +74,13 @@ class Types {
     return undefined;
   }
 
+  /**
+   * Gets greater unit
+   *
+   * @param {string} symbol symbol to use as a base
+   * @return {string} symbol greater unit
+   * @static
+   */
   static greater(symbol) {
     if (symbol === Types.MINUTE) {
       return Types.HOUR;
@@ -38,6 +93,13 @@ class Types {
     }
   }
 
+  /**
+   * Gets lesser unit
+   *
+   * @param {string} symbol symbol to use as a base
+   * @return {string} symbol lesser unit
+   * @static
+   */
   static lesser(symbol) {
     if (symbol === Types.HOUR) {
       return Types.MINUTE;

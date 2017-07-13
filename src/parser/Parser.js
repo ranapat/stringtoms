@@ -1,8 +1,45 @@
+/**
+ * Parser
+ *
+ * Parses string into array of meaningful values.
+ * Usually it's value, unit, value, unit, but might be
+ * only value, value or unit, unit or completely mixed
+ *
+ * @static
+ * @internal
+ */
 class Parser {
+  /**
+   * digit
+   *
+   * @param {RegExp} digit regular expression for digit
+   * @static
+   */
   static digit = /[0-9]/;
+
+  /**
+   * letter
+   *
+   * @param {RegExp} leter regular expression for leter
+   * @static
+   */
   static letter = /[a-zA-Z]/;
+
+  /**
+   * delimiter
+   *
+   * @param {RegExp} delimiter regular expression for delimiter
+   * @static
+   */
   static delimiter = /\W/;
 
+  /**
+   * Split string into parts
+   *
+   * @param {string} string string to split
+   * @return {Array<string>} array value unit parts
+   * @static
+   */
   static split(string) {
     const length = string.length;
 
@@ -16,7 +53,7 @@ class Parser {
       symbol = string[i];
 
       if (Parser.delimiter.test(symbol)) {
-        pushed = Parser.push(symbol, current, parts);
+        pushed = Parser._push(symbol, current, parts);
         symbol = pushed.symbol; current = pushed.current; parts = pushed.parts;
       } else if (current !== '') {
         if (
@@ -25,7 +62,7 @@ class Parser {
         ) {
           current += symbol;
         } else {
-          pushed = Parser.push(symbol, current, parts);
+          pushed = Parser._push(symbol, current, parts);
           symbol = pushed.symbol; current = pushed.current; parts = pushed.parts;
         }
       } else {
@@ -33,13 +70,23 @@ class Parser {
       }
     }
 
-    pushed = Parser.push(symbol, current, parts);
+    pushed = Parser._push(symbol, current, parts);
     symbol = pushed.symbol; current = pushed.current; parts = pushed.parts;
 
     return parts;
   }
 
-  static push(symbol, current, parts) {
+  /**
+   * Pushes current symbol to the parts
+   *
+   * @param {string} symbol current symbol
+   * @param {string} current current part item
+   * @param {Array<string>} parts parts of value units
+   * @return {Object} object all the parameters
+   * @static
+   * @private
+   */
+  static _push(symbol, current, parts) {
     if (current !== '') {
       parts.push(current);
       current = '';
